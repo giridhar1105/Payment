@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect } from 'react';
 
@@ -21,22 +21,20 @@ const GooglePay = () => {
       apiVersion: 2,
       apiVersionMinor: 0,
       merchantInfo: {
-        merchantId: 'your-merchant-id', // Replace with your Merchant ID
-        merchantName: 'Your Merchant Name',
+        merchantId: '5452805218',
+        merchantName: 'Giridhar',
       },
       transactionInfo: {
         totalPriceStatus: 'FINAL',
-        totalPrice: '10.00', // Replace with the actual amount
-        currencyCode: 'USD',
+        totalPrice: '100.00',
+        currencyCode: 'INR',
       },
-      // Additional configuration can go here
     };
 
     try {
       const paymentData = await paymentsClient.loadPaymentData(paymentDataRequest);
-      const paymentToken = paymentData.paymentMethodData.tokenizationData.token; // Extract the payment token
+      const paymentToken = paymentData.paymentMethodData.tokenizationData.token;
 
-      // Send the payment token to your server
       const response = await fetch('/api/create-payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -51,9 +49,12 @@ const GooglePay = () => {
   };
 
   return (
-    <div>
-      <h1>Google Pay Payment</h1>
-      <button id="google-pay-button" onClick={requestPayment}>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-gray-100 to-gray-300 p-5">
+      <h1 className="text-3xl font-semibold text-gray-800 mb-6">Google Pay Payment</h1>
+      <button
+        className="px-6 py-3 bg-blue-600 text-white font-medium rounded-md shadow-md hover:bg-blue-700 transition duration-300 ease-in-out focus:outline-none"
+        onClick={requestPayment}
+      >
         Pay with Google Pay
       </button>
     </div>

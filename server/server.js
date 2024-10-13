@@ -14,9 +14,18 @@ async function createPaymentHandler(req, res) {
     const { paymentToken } = req.body; // Expecting a payment token from Google Pay
 
     try {
-      // Use the payment token to process payment with your payment processor
-      const paymentGatewayResponse = await axios.post('https://your-payment-gateway.com/api/pay', {
-        token: paymentToken,
+      // Replace with your actual payment gateway API
+      const paymentGatewayResponse = await axios.post('https://pay.google.com/gp/p/js/pay.js', {
+        amount: 10000,
+        currency: 'inr',
+        payment_method: paymentToken,
+        confirmation_method: 'manual', //  'automatic'
+        confirm: true, 
+      }, {
+        headers: {
+          'Authorization': `Bearer YOUR_SECRET_KEY`, // Use your actual secret key
+          'Content-Type': 'application/json',
+        },
       });
 
       return res.status(200).json(paymentGatewayResponse.data);

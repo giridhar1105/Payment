@@ -15,7 +15,7 @@ async function createPaymentHandler(req, res) {
 
     try {
       // Replace with your actual payment gateway API
-      const paymentGatewayResponse = await axios.post('https://pay.google.com/gp/p/js/pay.js', {
+      const paymentGatewayResponse = await axios.post('https://zerotize.in/api_payment_init', {
         amount: 10000,
         currency: 'inr',
         payment_method: paymentToken,
@@ -23,7 +23,7 @@ async function createPaymentHandler(req, res) {
         confirm: true, 
       }, {
         headers: {
-          'Authorization': `Bearer YOUR_SECRET_KEY`, // Use your actual secret key
+          'Authorization': `hwXjBHKMs6fOLGsf`, // Use your actual secret key
           'Content-Type': 'application/json',
         },
       });

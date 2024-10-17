@@ -5,10 +5,8 @@ const axios = require('axios');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
-// Payment handler
 async function createPaymentHandler(req, res) {
   if (req.method === 'POST') {
     const { paymentToken } = req.body; 

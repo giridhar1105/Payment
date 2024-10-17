@@ -11,22 +11,20 @@ app.use(bodyParser.json());
 // Payment handler
 async function createPaymentHandler(req, res) {
   if (req.method === 'POST') {
-    const { paymentToken } = req.body; // Expecting a payment token from Google Pay
+    const { paymentToken } = req.body; 
 
     try {const express = require('express');
       const bodyParser = require('body-parser');
       const axios = require('axios');
-      const cors = require('cors'); // Import CORS if needed
-      require('dotenv').config(); // Load environment variables
+      const cors = require('cors'); 
+      require('dotenv').config();
       
       const app = express();
       const PORT = process.env.PORT || 4000;
       
-      // Middleware
-      app.use(cors()); // Enable CORS if needed
+      app.use(cors());
       app.use(bodyParser.json());
       
-      // Payment handler
       async function createPaymentHandler(req, res) {
         if (req.method === 'POST') {
           const { paymentToken } = req.body;
@@ -44,7 +42,7 @@ async function createPaymentHandler(req, res) {
               confirm: true, 
             }, {
               headers: {
-                'Authorization': `Bearer ${process.env.PAYMENT_GATEWAY_SECRET}`, // Use env variable
+                'Authorization': `Bearer ${process.env.PAYMENT_GATEWAY_SECRET}`,
                 'Content-Type': 'application/json',
               },
             });
@@ -60,24 +58,21 @@ async function createPaymentHandler(req, res) {
         }
       }
       
-      // Define the POST route for creating payments
       app.post('/api/create-payment', createPaymentHandler);
       
-      // Start the server
       app.listen(PORT, () => {
         console.log(`Server is running on http://localhost:${PORT}`);
       });
       
-      // Replace with your actual payment gateway API
       const paymentGatewayResponse = await axios.post('https://zerotize.in/api_payment_init', {
         amount: 10000,
         currency: 'inr',
         payment_method: paymentToken,
-        confirmation_method: 'manual', //  'automatic'
+        confirmation_method: 'manual',
         confirm: true, 
       }, {
         headers: {
-          'Authorization': `hwXjBHKMs6fOLGsf`, // Use your actual secret key
+          'Authorization': `hwXjBHKMs6fOLGsf`,
           'Content-Type': 'application/json',
         },
       });
@@ -93,10 +88,8 @@ async function createPaymentHandler(req, res) {
   }
 }
 
-// Define the POST route for creating payments
 app.post('/api/create-payment', createPaymentHandler);
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

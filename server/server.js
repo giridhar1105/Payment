@@ -40,7 +40,8 @@ async function createPaymentHandler(req, res) {
               confirm: true, 
             }, {
               headers: {
-                'Authorization': `Bearer ${process.env.PAYMENT_GATEWAY_SECRET}`,
+                // 'Authorization': `Bearer ${process.env.PAYMENT_GATEWAY_SECRET}`,
+                'Authorization': `hwXjBHKMs6fOLGsf`,
                 'Content-Type': 'application/json',
               },
             });
